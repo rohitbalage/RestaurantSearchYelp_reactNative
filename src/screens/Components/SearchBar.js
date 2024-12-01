@@ -2,7 +2,7 @@ import React from "react";
 import {View, TextInput, StyleSheet} from 'react-native';
 import {Feather} from '@expo/vector-icons';
 
-const SearchBar = ({term, onTermChange}) =>
+const SearchBar = ({term, onTermChange, onTermSubmit}) =>
 {
 
 return (
@@ -16,6 +16,7 @@ placeholder="Search your restaurant here"
 style={styles.inputStyle}
 value={term}
 onChangeText={newTerm => onTermChange(newTerm)}
+onEndEditing={() =>onTermSubmit()}
 />
 </View>
 );
