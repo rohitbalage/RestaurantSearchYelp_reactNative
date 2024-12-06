@@ -1,7 +1,8 @@
-import React, { useState } from "react"; 
+import React, { useState, useEffect } from "react"; 
 import { View, Text, StyleSheet } from "react-native";
 import SearchBar from "./Components/SearchBar";
 import yelp from "./api/yelp";
+
 
 const SearchScreen = () => {
   const [term, setTerm] = useState("");
@@ -38,6 +39,13 @@ const SearchScreen = () => {
       setErrorMessage("Something went wrong. Please try again.");
     }
   };
+
+// call API once when screen render 1st time
+  useEffect(() => 
+{
+    searchApi('pasta');
+
+}, [])
 
   return (
     <View>
