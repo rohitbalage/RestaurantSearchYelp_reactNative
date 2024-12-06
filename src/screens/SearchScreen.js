@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react"; 
+import React, { useState } from "react"; 
 import { View, Text, StyleSheet } from "react-native";
-import SearchBar from "./Components/SearchBar";
+import SearchBar from "../Components/SearchBar";
 import useResults  from "../hook/useResults";
+import ResultsList from "../Components/ResultsList";
 
 
 const SearchScreen = () => {
@@ -18,6 +19,9 @@ const SearchScreen = () => {
       />
       {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null}
       <Text style={styles.resultsCount}>We have found {results.length} results</Text>
+      <ResultsList title="Cost Effective" />
+      <ResultsList title="Bit Pricier" />
+      <ResultsList title="Big Spender" />
     </View>
   );
 };
