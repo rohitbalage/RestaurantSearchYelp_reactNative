@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react"; 
 import { View, Text, StyleSheet } from "react-native";
 import SearchBar from "./Components/SearchBar";
 import yelp from "./api/yelp";
@@ -18,25 +18,33 @@ const SearchScreen = () => {
           location: "san jose",
         },
       });
+
       setResults(response.data.businesses);
-      console.log("Yelp API Response:", JSON.stringify(response.data, null, 2)); // Log the payload in the console
+
+      // Log the API response payload: cleaned-up version
+      console.log("Relevant Business Data:");
+      response.data.businesses.forEach((business) => {
+        console.log({
+          name: business.name,
+          rating: business.rating,
+          categories: business.categories.map((c) => c.title),
+          phone: business.display_phone,
+          address: business.location.display_address.join(", "),
+        });
+      });
+
     } catch (err) {
       console.error("Error fetching data from Yelp:", err);
       setErrorMessage("Something went wrong. Please try again.");
     }
   };
 
-  // Run initial search on component load
-  useEffect(() => {
-    searchApi("restaurants");
-  }, []);
-
   return (
     <View>
       <SearchBar
-        term={term}
-        onTermChange={(newTerm) => setTerm(newTerm)}
-        onTermSubmit={() => searchApi(term)}
+        term={term} // The current search term
+        onTermChange={(newTerm) => setTerm(newTerm)} // Update term state on input change
+        onTermSubmit={() => searchApi(term)} // Trigger API request on submit (Enter or Search button)
       />
       {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null}
       <Text style={styles.resultsCount}>We have found {results.length} results</Text>
