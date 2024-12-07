@@ -19,7 +19,7 @@ const SearchScreen = () => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <>
       <SearchBar
         term={term} // The current search term
         onTermChange={(newTerm) => setTerm(newTerm)} // Update term state on input change
@@ -27,12 +27,12 @@ const SearchScreen = () => {
       />
       {errorMessage ? <Text style={styles.error}>{errorMessage}</Text> : null}
       <ScrollView>
-      <Text style={styles.resultsCount}>We have found {results.length} results</Text>
-      <ResultsList results={filterResultsByPrice('$')} title="Cost Effective" />
-      <ResultsList results={filterResultsByPrice('$$')} title="Bit Pricier" />
+      {/* <Text style={styles.resultsCount}>We have found {results.length} results</Text> */}
+      <ResultsList results={filterResultsByPrice('$')} title="Cost Effective"  />
+      <ResultsList results={filterResultsByPrice('$$')} title="Bit Pricier"  />
       <ResultsList results={filterResultsByPrice('$$$')} title="Big Spender" />
       </ScrollView>
-    </View>
+    </>
   );
 };
 
