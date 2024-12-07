@@ -13,7 +13,7 @@ export default () =>
           params: {
             limit: 50,
             term: searchTerm,
-            location: "san jose",
+            location: "Bloomfield Hills",
           },
         });
   
